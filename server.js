@@ -13,10 +13,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', function(req, res)
 {
-  res.sendFile(path.join(__dirname, '/public', '/index.html'));
+  res.sendFile(path.join(__dirname, '/public', '/views/login.html'));
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4000;
 
 app.listen(port);
-console.log("Server is starting on port 3000")
+console.log("Server is starting on port 4000")
