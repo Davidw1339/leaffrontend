@@ -1,7 +1,7 @@
 <section style="padding: 10px">
 <h2><a href="#/requests" style="margin: 10px; border: 1px solid lightgray; padding: 0px 5px 5px 5px;border-radius: 5px">&larr;</a>Title: {{request.title}}</h2>
 <div ng-repeat="image in request.pictures" class="images">
-  <img ng-src = "http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/image/{{username}}/{{request._id}}/{{$index}}">
+  <img ng-src = "http://10.194.93.223:3000/images/{{username}}/{{request._id}}/{{$index}}.jpg">
   <p>{{image}}</p>
 </div>
 
