@@ -1,0 +1,12 @@
+ul
+{
+  overflow:hidden;
+}
+li
+{
+  /*float:left;*/
+}
+li:last-child
+{
+  /*float:right;*/
+}
