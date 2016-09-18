@@ -2,26 +2,26 @@ var app = angular.module('Login', []);
 
 app.factory('login', ['$http', function($http){ //create a factory "stores" that
 // will hold the variable stores, as well as http functions
-  var user = {
-      username : String,
-      jwt_token : String
-  }
+  var user = {}
 //http post for login
-  user.login = function(callback, name, pwd) {
+  user.login = function(name, pwd, callback) {
       body = {
-          username : admin,
-          password : 123
+          username : name,
+          password : pwd
       }
-      return $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/users/login', body).then(function(data) {
-          angular.copy(user.jwt_token, data);
-          console.log(data);
-          console.log(user.jwt_token);
+      $http.post('http://localhost:3000/users/login', body).then(function(data) {
+          user.jwt_token = data.data.token;
+            console.log(user.jwt_token);
+            callback();
       });
   } 
-  return o;
+  return user;
 }]);
 
 app.controller('loginController', ['$scope', '$http', 'login', 
   function($scope, $http, login) {
-    login.login();
+    login.login('admin', '123', function(){
+        $scope.login = login;
+        console.log(login.jwt_token);
+    });
 }]);
