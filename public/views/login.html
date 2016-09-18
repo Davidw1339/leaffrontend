@@ -1,69 +1,17 @@
-<!DOCTYPE HTML>
-<!--
-	Arcana by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Leaf</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets/css/custom.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	</head>
-	<body ng-app="Login" ng-controller="loginCtrl">
-		<div id="page-wrapper">
-
-			<!-- Header -->
-				<div id="header">
-
-					<!-- Logo -->
-						<h1><a style = "font-size:500%;" href="index.html" id="logo">Leaf</a></h1>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="request.html">Requests</a></li>
-								<li><a href="profile.html">Profile</a></li>
-								<li class="login current"><a href="login.html">Login</a></li>
-							</ul>
-						</nav>
-
-				</div>
-
-        <section style="padding: 10px">
-          <h2>Login</h2>
-          <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-          <form class="form" ng-submit="submitlogin()">
-            <div class="form-group">
-              <label>Username</label>
-              <input type="text" class="form-control" name="username" ng-model="loginForm.username" required>
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" class="form-control" name="password" ng-model="loginForm.password" required>
-            </div>
-            <div style="margin-top: 20px">
-              <button type="submit" class="button" ng-disabled="disabled">Login</button>
-            </div>
-          </form>
-        </section>
-
+<section style="padding: 10px">
+	<h2>Login</h2>
+	<div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+	<form class="form" ng-submit="submitlogin()">
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control" name="username" ng-model="loginForm.username" required>
 		</div>
-			<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
-			<script src="../javascript/login.js"></script>
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/skel.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="../assets/js/main.js"></script>
-
-	</body>
-</html>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password" ng-model="loginForm.password" required>
+		</div>
+		<div style="margin-top: 20px">
+			<button type="submit" class="button" ng-disabled="disabled">Login</button>
+		</div>
+	</form>
+</section>

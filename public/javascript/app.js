@@ -1,28 +1,30 @@
-var app = angular.module('app', ['Login']);
+var app = angular.module('app', ['Login', 'ngRoute']);
 
-listView.config([
-'$stateProvider',
-'$urlRouterProvider',
-function($stateProvider, $urlRouterProvider) {
-
-    $stateProvider.state('Login', { //routes /list/funcID to display stores with the same funcID
-      //"Layer 1"
-      url: '/login',
-      templateUrl: '/templates/login.html',
-      controller: 'loginCtrl',
-    });
-
-    $stateProvider.state('main', { //routes /store/store._id to new template, new controller,
-      //new variable of selected store created that is populated with items
-      //"Layer 2"
-      url: '/index',
-      templateUrl: '/templates/index.html',
-      controller: 'AppCtrl',
-    });
-
-
-  $urlRouterProvider.otherwise('/chat');
-}]);
+app.config(function($routeProvider)
+{
+  console.log("Hello");
+  $routeProvider
+  .when('/',
+  {
+    templateUrl: '../views/main.html'
+  })
+  .when('/requests',
+  {
+    templateUrl: '../views/request.html'
+  })
+  .when('/profile',
+  {
+    templateUrl: '../views/profile.html'
+  })
+  .when('/login',
+  {
+    templateUrl: '../views/login.html'
+  })
+  .otherwise(
+  {
+    redirectTo: '/'
+  });
+});
 
 app.controller('requestController', ['$scope', '$http', 'Login', function($scope, $http, loginService)
 {
@@ -34,7 +36,7 @@ app.controller('requestController', ['$scope', '$http', 'Login', function($scope
   {
     $http.get('/requests/data_farmer').then(function(response)
     {
-      
+
     });
   }
   else if($scope.agronomist)
