@@ -31,7 +31,7 @@ app.factory('login', ['$http', function($http){ //create a factory "stores" that
       callback();
     });
   }
-  
+
   user.userIsLoggedIn = function() {
       if(user.jwt_token == null) {
           return false
@@ -72,7 +72,10 @@ app.controller('loginCtrl', ['$scope', '$http', 'login', '$location',
 
     $scope.submitregister = function()
     {
-      login.
+      login.register($scope.registerForm.username, $scope.registerForm.password, $scope.registerForm.email, function()
+      {
+        $location.path('/requests');
+      });
     }
     console.log(login.userIsLoggedIn())
 }]);

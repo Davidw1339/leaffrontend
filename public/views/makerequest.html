@@ -13,10 +13,10 @@
 		</div>
     <div class="form-group">
       <label>Images</label>
-      Underside - <input type="file" name="filename" accept="image/gif, image/jpeg, image/png"><br>
-      Topside - <input type="file" name="filename" accept="image/gif, image/jpeg, image/png"><br>
-      Extra - <input type="file" name="filename" accept="image/gif, image/jpeg, image/png"><br>
-      Extra - <input type="file" name="filename" accept="image/gif, image/jpeg, image/png">
+      Underside - <input type="file" name="filename" ng-model="requestForm.image1"  accept="image/gif, image/jpeg, image/png"><br>
+      Topside - <input type="file" name="filename" ng-model="requestForm.image2" accept="image/gif, image/jpeg, image/png"><br>
+      Extra - <input type="file" name="filename" ng-model="requestForm.image3" accept="image/gif, image/jpeg, image/png"><br>
+      Extra - <input type="file" name="filename" ng-model="requestForm.image4" accept="image/gif, image/jpeg, image/png">
     </div>
 		<div style="margin-top: 20px">
 			<button type="submit" class="button" ng-disabled="disabled">Submit Request</button>

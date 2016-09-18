@@ -6,27 +6,49 @@ function($scope, $http, $location, login)
   console.log(login.jwt_token);
   $scope.submitrequest = function()
   {
-    console.log("Authorization " + "Bearer " + login.jwt_token);
-    $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/new_request_farmer',
-    {
-      agronomistusername: "admin",
-      comment: $scope.requestForm.comment
-    },
-    {
-     headers:
-     {
-       "Authorization": "bearer " + login.jwt_token,
-       "farmerusername": login.username
-     }
-    }).then(function(response)
-    {
-      console.log(response);
-      $location.path('/#requests');
+    var file = document.querySelector('input[type="file"]').files[0];
+    // console.log(file);
+    var base64Str = getBase64(file, function(stng){
+      var toSendStr = stng.substring(stng.indexOf(",")+1);
+      console.log(toSendStr);
+      $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/new_request_farmer',
+      {
+        agronomistusername: "admin",
+        comment: $scope.requestForm.comment
+      },
+      {
+       headers:
+       {
+         "Authorization": "bearer " + login.jwt_token,
+         "farmerusername": login.username
+       }
+      }).then(function(response)
+      {
+        console.log("Response " + response);
+        $location.path('/#requests');
+      });
     });
+
+    // console.log(toSendStr);
+    // console.log("Authorization " + "Bearer " + login.jwt_token);
+
   };
   // console.log($($("nav").children()[2]).addClass("current"));
   // $("#nav").children()[0].children()[1].addClass("current");
 }]);
+
+
+function getBase64(file, cb) {
+   var reader = new FileReader();
+   reader.readAsDataURL(file);
+   reader.onload = function () {
+     cb(reader.result);
+   };
+   reader.onerror = function (error) {
+     console.log('Error: ', error);
+   };
+}
+
 
 function recursiveImageUpload(pic_arr ,callback, url_arr) {
   if(url_arr.length == pic_arr.length){
