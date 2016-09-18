@@ -34,7 +34,7 @@
 								<header>
 									<h2>Current Requests</h2>
 									<div ng-repeat="request in requests">
-										<a class = "button request-btn">{{request.farmerusername}}</a>
+										<a ng-click="viewrequest()" class = "button request-btn">{{request.title}}<span style="float:right;">{{request.farmerusername}}</span><br><br></a>
 									</div>
 								</header>
 

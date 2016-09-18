@@ -11,10 +11,27 @@ app.factory('login', ['$http', function($http){ //create a factory "stores" that
       }
       $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/users/login', body).then(function(data) {
             user.jwt_token = data.data.token;
+            user.username = body.username;
             console.log(user.jwt_token);
             callback();
       });
   }
+
+  user.register = function(name, pwd, email, callback)
+  {
+    body = {
+      username : name,
+      password : pwd,
+      email : email
+    }
+    $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/users/register', body).then(function(data)
+    {
+      user.jwt_token = data.data.token;
+      user.username = body.username;
+      callback();
+    });
+  }
+  
   user.userIsLoggedIn = function() {
       if(user.jwt_token == null) {
           return false
@@ -51,6 +68,11 @@ app.controller('loginCtrl', ['$scope', '$http', 'login', '$location',
             // }
         });
         $scope.errorMessage = "Incorrect username/password";
+    }
+
+    $scope.submitregister = function()
+    {
+      login.
     }
     console.log(login.userIsLoggedIn())
 }]);

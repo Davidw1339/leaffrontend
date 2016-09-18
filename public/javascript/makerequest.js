@@ -6,17 +6,22 @@ function($scope, $http, $location, login)
   console.log(login.jwt_token);
   $scope.submitrequest = function()
   {
+    console.log("Authorization " + "Bearer " + login.jwt_token);
     $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/new_request_farmer',
     {
-      headers:
-      {
-        "Authorization": "bearer " + login.jwt_token
-      }
-      // agronomistusername: "admin",
-      // comment: $scope.requestForm.comment
+      agronomistusername: "admin",
+      comment: $scope.requestForm.comment
+    },
+    {
+     headers:
+     {
+       "Authorization": "bearer " + login.jwt_token,
+       "farmerusername": login.username
+     }
     }).then(function(response)
     {
       console.log(response);
+      $location.path('/#requests');
     });
   };
   // console.log($($("nav").children()[2]).addClass("current"));

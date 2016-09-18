@@ -21,6 +21,12 @@ app.config(function($routeProvider)
     controller: 'makeRequest',
     access: {restricted: true}
   })
+  .when('/viewrequest',
+  {
+    templateUrl: '../views/viewrequest.html',
+    controller: 'viewRequest',
+    access: {restricted: true}
+  })
   .when('/profile',
   {
     templateUrl: '../views/profile.html',
