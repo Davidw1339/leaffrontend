@@ -4,9 +4,10 @@ ul
 }
 li
 {
-  /*float:left;*/
+  float:left;
 }
 li:last-child
 {
-  /*float:right;*/
+  float:right;
+  margin-right: 10px;
 }
