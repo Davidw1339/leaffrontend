@@ -8,12 +8,12 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/public/views')));
 
 
 app.get('/', function(req, res)
 {
-  res.sendFile(path.join(__dirname, '/public', '/views/login.html'));
+  res.sendFile(path.join(__dirname, '/public', '/index.html'));
 });
 
 var port = process.env.PORT || 4000;
