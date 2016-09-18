@@ -7,42 +7,18 @@ function($scope, $http, $location, login)
   $($("#nav").children().children('.current')).removeClass("current");
   $($("#nav").children().children()[1]).addClass("current");
   $scope.requests = [];
-  var isFarmer = true;
-  if(isFarmer)
-  {
-    $http.get("http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/data_farmer", {
-      headers:
-      {
-        "Authorization": "bearer " + login.jwt_token,
-        "farmerusername": login.username
-      }
-    }).success(function(response)
+
+  $http.get("http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/data", {
+    headers:
     {
-      console.log("it was a sucess:D::::D:D:D:D::");
-      console.log(response);
-      $scope.requests = response;
-    });
-  }
-  else
+      "Authorization": "bearer " + login.jwt_token,
+    }
+  }).success(function(response)
   {
-    console.log(login.username);
-    $http.get("http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/data_agronomist", {
-      headers:
-      {
-        "Authorization": "bearer " + login.jwt_token,
-        "agronomistusername": login.username
-      }
-    }).success(function(response)
-    {
-      console.log("it was a sucess:D::::D:D:D:D::");
-      console.log(response);
-      $scope.requests = response;
-    });
-  }
-  $scope.viewrequest = function()
-  {
-    $location.path('/viewrequest')
-  }
+    console.log("it was a sucess:D::::D:D:D:D::");
+    console.log(response);
+    $scope.requests = response;
+  });
   //
   // $http.get('http://localhost:3000/posts.json', {
   //     headers: {
