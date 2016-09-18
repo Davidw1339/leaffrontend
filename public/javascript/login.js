@@ -26,21 +26,31 @@ app.factory('login', ['$http', function($http){ //create a factory "stores" that
   return user;
 }]);
 
-app.controller('loginCtrl', ['$scope', '$http', 'login',
-  function($scope, $http, login) {
+app.controller('loginCtrl', ['$scope', '$http', 'login', '$location',
+  function($scope, $http, login, $location) {
     $($("#nav").children().children('.current')).removeClass("current");
     $($("#nav").children().children()[3]).addClass("current");
     $scope.loginForm = {
         username : '',
         password : ''
     };
-
     $scope.submitlogin = function() {
         login.login($scope.loginForm.username, $scope.loginForm.password, function(){
             $scope.login = login;
-            console.log(login.jwt_token);
+            // console.log(login.jwt_token);
             console.log(login.userIsLoggedIn());
+            $location.path('/requests');
+            // if(login.userIsLoggedIn())
+            // {
+            //   $location.path('/requests');
+            // }
+            // else
+            // {//THIS ELSE IS NEVER CALLLEEEEEEEDDDDDDDDDDDDDDDDDDDDDD
+            //   $scope.errorMessage = "Authentication error, username or password is incorrect";
+            //   $scope.$apply();
+            // }
         });
+        $scope.errorMessage = "Incorrect username/password";
     }
     console.log(login.userIsLoggedIn())
 }]);

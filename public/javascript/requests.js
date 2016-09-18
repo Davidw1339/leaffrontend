@@ -7,9 +7,26 @@ function($scope, $http, $location, login)
   $($("#nav").children().children('.current')).removeClass("current");
   $($("#nav").children().children()[1]).addClass("current");
   $scope.requests = [];
-  $http.get("localhost:3000/requests/data_farmer", {"farmerusername":"david"}).then(function(response)
+  $http.get("http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/data_farmer", {
+    headers:
+    {
+      "Authorization": "bearer " + login.jwt_token,
+      "farmerusername": login.username
+
+    }
+  }).success(function(response)
   {
-      $scope.requests = response.data;
+    console.log("it was a sucess:D::::D:D:D:D::");
+    console.log(response);
+    $scope.requests = response;
   });
+  //
+  // $http.get('http://localhost:3000/posts.json', {
+  //     headers: {
+  //         "Authorization": 'Token token="1111"'
+  //     }
+  //   }).success(function(response){
+  //     console.log(response)
+  //   });
 
 }]);

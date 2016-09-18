@@ -3,6 +3,11 @@
   background: url("../../images/upfeathers.png") repeat 0 0;
 }
 
+.request-btn
+{
+  margin: 10px;
+}
+
 ul
 {
   overflow:hidden;

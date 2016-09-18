@@ -6,44 +6,43 @@ app.config(function($routeProvider)
   .when('/',
   {
     templateUrl: '../views/main.html',
-    controller: 'homeController'
+    controller: 'homeController',
+    access: {restricted: false}
   })
   .when('/requests',
   {
     templateUrl: '../views/request.html',
-    controller: 'requestController'
+    controller: 'requestController',
+    access: {restricted: true}
   })
   .when('/profile',
   {
     templateUrl: '../views/profile.html',
-    controller: 'profileController'
+    controller: 'profileController',
+    access: {restricted: true}
   })
   .when('/login',
   {
     templateUrl: '../views/login.html',
-    controller: 'loginCtrl'
+    controller: 'loginCtrl',
+    access: {restricted: false}
   })
   .otherwise(
   {
-    redirectTo: '/'
+    redirectTo: '/',
+    access: {restricted: false}
   });
 });
 
-app.controller('requestController', ['$scope', '$http', 'Login', function($scope, $http, loginService)
+app.run(function ($rootScope, $location, $route, login)
 {
-  $scope.username = "davidew2";
-  $scope.farmer = true;
-  $scope.agronomist = true;
-
-  if($scope.farmer)
+  $rootScope.$on('$routeChangeStart',
+  function(event, next, current)
   {
-    $http.get('/requests/data_farmer').then(function(response)
+    if(next.access.restricted && !login.userIsLoggedIn())
     {
-
-    });
-  }
-  else if($scope.agronomist)
-  {
-
-  }
-}]);
+        $location.path('/login');
+        $route.reload();
+    }
+  });
+});
