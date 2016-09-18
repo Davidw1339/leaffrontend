@@ -11,9 +11,9 @@ function($scope, $http, $location, login)
     var base64Str = getBase64(file, function(stng){
       var toSendStr = stng.substring(stng.indexOf(",")+1);
       console.log(toSendStr);
-      $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/new_request_farmer',
+      $http.post('http://10.194.93.233:3000/requests/new_request_farmer',
       {
-        agronomistusername: "admin",
+        agronomistusername: "admin",10.194.93.233:3000
         comment: $scope.requestForm.comment
       },
       {

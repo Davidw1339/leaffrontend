@@ -48,7 +48,7 @@ function($scope, $http, $location, login)
     $scope.index = args.index;
   });
   $scope.username = login.username
-  $http.get("http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/requests/data", {
+  $http.get("http://10.194.93.233:3000/requests/data", {
     headers:
     {
       "Authorization": "bearer " + login.jwt_token,

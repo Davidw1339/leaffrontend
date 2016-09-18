@@ -24,7 +24,7 @@ app.factory('login', ['$http', function($http){ //create a factory "stores" that
       password : pwd,
       email : email
     }
-    $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/users/register', body).then(function(data)
+    $http.post('http://10.194.93.233:3000/users/register', body).then(function(data)
     {
       user.jwt_token = data.data.token;
       user.username = body.username;
