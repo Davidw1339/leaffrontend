@@ -26,8 +26,10 @@ app.factory('login', ['$http', function($http){ //create a factory "stores" that
   return user;
 }]);
 
-app.controller('loginCtrl', ['$scope', '$http', 'login', 
+app.controller('loginCtrl', ['$scope', '$http', 'login',
   function($scope, $http, login) {
+    $($("#nav").children().children('.current')).removeClass("current");
+    $($("#nav").children().children()[3]).addClass("current");
     $scope.loginForm = {
         username : '',
         password : ''

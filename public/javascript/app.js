@@ -2,23 +2,26 @@ var app = angular.module('app', ['Login', 'ngRoute']);
 
 app.config(function($routeProvider)
 {
-  console.log("Hello");
   $routeProvider
   .when('/',
   {
-    templateUrl: '../views/main.html'
+    templateUrl: '../views/main.html',
+    controller: 'homeController'
   })
   .when('/requests',
   {
-    templateUrl: '../views/request.html'
+    templateUrl: '../views/request.html',
+    controller: 'requestController'
   })
   .when('/profile',
   {
-    templateUrl: '../views/profile.html'
+    templateUrl: '../views/profile.html',
+    controller: 'profileController'
   })
   .when('/login',
   {
-    templateUrl: '../views/login.html'
+    templateUrl: '../views/login.html',
+    controller: 'loginCtrl'
   })
   .otherwise(
   {

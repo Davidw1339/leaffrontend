@@ -32,13 +32,11 @@
 
 							<article>
 								<header>
-									<h2>Requests</h2>
-									<p>Click on the 'Create Request' button  on the left to create a new request.</p>
+									<h2>Current Requests</h2>
+									<div ng-repeat="request in requests">
+										{{request.farmerusername}}
+									</div>
 								</header>
-
-								<span> <h3> placeholder </h3> </span>
-
-								<p>Using the request....Put a list of requests here.</p>
 
 
 							</article>
