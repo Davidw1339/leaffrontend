@@ -16,17 +16,17 @@ app.factory('login', ['$http', function($http){ //create a factory "stores" that
       });
   }
   user.userIsLoggedIn = function() {
-      if(user.jwt_token != '') {
-          console.log('no token');
+      if(user.jwt_token == null) {
+          return false
       }
       else {
-          console.log('token exists');
+          return true
       }
   }
   return user;
 }]);
 
-app.controller('loginController', ['$scope', '$http', 'login', 
+app.controller('loginCtrl', ['$scope', '$http', 'login', 
   function($scope, $http, login) {
     $scope.loginForm = {
         username : '',
@@ -37,6 +37,8 @@ app.controller('loginController', ['$scope', '$http', 'login',
         login.login($scope.loginForm.username, $scope.loginForm.password, function(){
             $scope.login = login;
             console.log(login.jwt_token);
+            console.log(login.userIsLoggedIn());
         });
     }
+    console.log(login.userIsLoggedIn())
 }]);

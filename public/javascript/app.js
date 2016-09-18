@@ -9,28 +9,15 @@ function($stateProvider, $urlRouterProvider) {
       //"Layer 1"
       url: '/login',
       templateUrl: '/templates/login.html',
-      controller: 'StoreListCtrl',
-      resolve: {
-        store: ['$stateParams','stores', function($stateParams, stores) {
-          return stores.getCategory($stateParams.id);
-        }],
-        curFunc: ['$stateParams', function($stateParams){
-          return $stateParams.id;
-        }]
-      }
+      controller: 'loginCtrl',
     });
 
-    $stateProvider.state('selectedStore', { //routes /store/store._id to new template, new controller,
+    $stateProvider.state('main', { //routes /store/store._id to new template, new controller,
       //new variable of selected store created that is populated with items
       //"Layer 2"
-      url: '/store/{id}',
-      templateUrl: '/templates/store.html',
-      controller: 'StoreCtrl',
-      resolve: {
-        selectedStore: ['$stateParams', 'stores', function($stateParams, stores) {
-          return stores.getStore($stateParams.id);
-        }]
-      }
+      url: '/index',
+      templateUrl: '/templates/index.html',
+      controller: 'AppCtrl',
     });
 
 
