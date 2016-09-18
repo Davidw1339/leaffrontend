@@ -9,19 +9,34 @@ app.factory('login', ['$http', function($http){ //create a factory "stores" that
           username : name,
           password : pwd
       }
-      $http.post('http://localhost:3000/users/login', body).then(function(data) {
-          user.jwt_token = data.data.token;
+      $http.post('http://hackathonbackend-dev.us-east-1.elasticbeanstalk.com/users/login', body).then(function(data) {
+            user.jwt_token = data.data.token;
             console.log(user.jwt_token);
             callback();
       });
-  } 
+  }
+  user.userIsLoggedIn = function() {
+      if(user.jwt_token != '') {
+          console.log('no token');
+      }
+      else {
+          console.log('token exists');
+      }
+  }
   return user;
 }]);
 
 app.controller('loginController', ['$scope', '$http', 'login', 
   function($scope, $http, login) {
-    login.login('admin', '123', function(){
-        $scope.login = login;
-        console.log(login.jwt_token);
-    });
+    $scope.loginForm = {
+        username : '',
+        password : ''
+    };
+
+    $scope.submitlogin = function() {
+        login.login($scope.loginForm.username, $scope.loginForm.password, function(){
+            $scope.login = login;
+            console.log(login.jwt_token);
+        });
+    }
 }]);
